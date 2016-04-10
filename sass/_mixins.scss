@@ -1,0 +1,92 @@
+/*
+======== Classes to use by @extend ========
+*/
+.absoluteCentered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include transform(translate(-50%, -50%));
+}
+
+/*
+======== Mixins to use by @include ========
+*/
+@mixin psyBgPattern($size, $color) {
+	// variables
+	$lightenColor: lighten($color, 20%);
+	$darkenColor: darken($color, 20%);
+
+	background-color: $color;
+	background-image: linear-gradient(30deg, $lightenColor 12%, transparent 12.5%, transparent 87%, $lightenColor 87.5%, $lightenColor),
+					  linear-gradient(150deg, $lightenColor 12%, transparent 12.5%, transparent 87%, $lightenColor 87.5%, $lightenColor),
+					  linear-gradient(30deg, $lightenColor 12%, transparent 12.5%, transparent 87%, $lightenColor 87.5%, $lightenColor),
+					  linear-gradient(150deg, $lightenColor 12%, transparent 12.5%, transparent 87%, $lightenColor 87.5%, $lightenColor),
+					  linear-gradient(60deg, $darkenColor 25%, transparent 25.5%, transparent 75%, $darkenColor 75%, $darkenColor), 
+					  linear-gradient(60deg, $darkenColor 25%, transparent 25.5%, transparent 75%, $darkenColor 75%, $darkenColor);
+	background-size: ($size * 2) ($size * 3.5);
+	background-position: 0 0, 0 0, $size ($size * 1.75), $size ($size * 1.75), 0 0, $size ($size * 1.75);
+}
+
+@mixin hexagon($hexWidth, $hexColor, $hexOpacity, $type: '') {
+	// variables
+	$hexHeight: $hexWidth * 0.5774;
+	$hexHalfWidth: $hexWidth * 0.5;
+	$hexBgColor: rgba($hexColor, $hexOpacity);
+	$hexRegularTriangles: $hexWidth * 0.2887;
+	$topBotTrianglesWidth: $hexWidth * 0.7071;
+	$topBotTrianglesX: $hexWidth * 0.147;
+	$topBotTrianglesY: -($hexWidth * 0.3535);
+
+	position: relative;
+	z-index: 1;
+	width: $hexWidth;
+	height: $hexHeight;
+	background: $hexBgColor;
+
+  	&:before,
+	&:after {
+		content: "";
+		position: absolute;
+		z-index: 10;
+	}
+
+	@if $type != 'withEdges' {
+		margin: $hexRegularTriangles 0;
+
+	  	&:before,
+		&:after {
+			width: 0;
+			height: 0;
+			border-left: $hexHalfWidth solid transparent;
+			border-right: $hexHalfWidth solid transparent;
+		}
+
+		&:before {
+			bottom: 100%;
+			border-bottom: $hexRegularTriangles solid $hexBgColor;
+		}
+
+		&:after {
+			top: 100%;
+			width: 0;
+			border-top: $hexRegularTriangles solid $hexBgColor;
+		}
+	} @else {
+		&:before,
+		&:after {
+			width: $topBotTrianglesWidth;
+			height: $topBotTrianglesWidth;
+			@include transform(scaleY(0.5774) rotate(-45deg));
+			background: inherit;
+			left: $topBotTrianglesX;
+		}
+
+		&:before {
+			top: $topBotTrianglesY;
+		}
+
+		&:after {
+			bottom: $topBotTrianglesY;
+		}
+	}
+}

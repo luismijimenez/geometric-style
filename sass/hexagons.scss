@@ -1,0 +1,190 @@
+@import 'import';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css';
+
+$hex1FrontColor: #FF712C;
+$hex1BgColor: #FFF6C5;
+$hex2FrontColor: #BEDB39;
+$hex2BgColor: #004358;
+
+$animationEasing: cubic-bezier(0.4, -0.3, 0.4, 1.2);
+
+html,
+body,
+main,
+article {
+	height: 100%;
+}
+
+body {
+	background-color: $hex1FrontColor;
+	position: relative;
+}
+
+main {
+	font-size: 0;
+}
+
+article {
+	width: 50%;
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+
+	&.hexagon1 {
+		background-color: $hex1BgColor;
+	}
+
+	&.hexagon2 {
+		background-color: $hex2BgColor;
+	}
+}
+
+hexagon-wrapper,
+hexagon {
+	display: block;
+}
+
+hexagon-wrapper {
+	@extend .absoluteCentered;
+}
+
+button {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	z-index: 100;
+	cursor: pointer;
+	font-family: FontAwesome;
+
+	&.stopper {
+		width: 0;
+		opacity: 0;
+	}
+
+	&.trigger {
+		&:before {
+			content: '\f04b';
+		}
+		&:focus,
+		&:active {
+			opacity: 0;
+			width: 0;
+
+			+ .stopper {
+				width: 100%;
+				opacity: 1;
+
+				&:before {
+					content: '\f04d';
+				}
+			}
+		}
+	}
+
+	&:before {
+		display: block;
+		opacity: 0;
+		visibility: hidden;
+		@include transition(all 200ms ease-in-out 200ms);
+		font-size: 3rem;
+		padding: 30px 120px;
+	}
+
+	&:hover {
+		&:before {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+}
+
+@mixin animationType($animationName) {
+	button {
+		&.trigger {
+			&:focus,
+			&:active {
+				~ hexagon-wrapper {
+					hexagon {
+						@include animation($animationName 5000ms $animationEasing infinite 1s alternate);
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin tooltipColors($tooltipBgColor, $tooltipFrontColor) {
+	button {
+		&:before {
+			background-color: rgba($tooltipBgColor, .3);
+			color: $tooltipFrontColor;
+		}
+	}
+}
+
+.hexagon1 {
+	hexagon {
+		@include hexagon(300px, $hex1FrontColor, .3);
+		@include transform(none);
+	}
+	@include tooltipColors($hex1FrontColor, $hex1BgColor);
+	@include animationType(rotation);
+}
+.hexagon2 {
+	hexagon {
+		@include hexagon(300px, $hex2FrontColor, .5, withEdges);
+		@include transform(scale(.766));
+		@include transition(all 200ms $animationEasing);
+	}
+	@include tooltipColors($hex2FrontColor, $hex2BgColor);
+	@include animationType(edgesRotation);
+}
+
+@keyframes rotation {
+	0%, 10% {
+		@include transform(none);
+	}
+	45%, 55% {
+		@include transform(rotate(45deg) scale(.89));
+	}
+	90%, 100% {
+		@include transform(rotate(90deg) scale(.85));
+	}
+}
+
+@keyframes edgesRotation {
+	0%, 10% {
+		@include transform(scale(.766));
+	}
+	45%, 55% {
+		@include transform(rotate(-45deg) scale(1));
+		background-color: rgba($hex2FrontColor, .1);
+	}
+	90%, 100% {
+		@include transform(rotate(-90deg) scale(.86));
+	}
+}
+
+@media screen and (max-width: 600px) {
+	article {
+		width: 100%;
+		height: 50%;
+		display: block;
+	}
+
+	.hexagon1 {
+		hexagon {
+			@include hexagon(200px, $hex1FrontColor, .3);
+		}
+	}
+	.hexagon2 {
+		hexagon {
+			@include hexagon(200px, $hex2FrontColor, .5, withEdges);
+		}
+	}
+}
