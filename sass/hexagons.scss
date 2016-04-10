@@ -6,6 +6,8 @@ $hex1BgColor: #FFF6C5;
 $hex2FrontColor: #BEDB39;
 $hex2BgColor: #004358;
 
+$hexWidth: 300px;
+
 $animationEasing: cubic-bezier(0.4, -0.3, 0.4, 1.2);
 
 html,
@@ -129,7 +131,7 @@ button {
 
 .hexagon1 {
 	hexagon {
-		@include hexagon(300px, $hex1FrontColor, .3);
+		@include hexagon($hexWidth, $hex1FrontColor, .3);
 		@include transform(none);
 	}
 	@include tooltipColors($hex1FrontColor, $hex1BgColor);
@@ -137,7 +139,7 @@ button {
 }
 .hexagon2 {
 	hexagon {
-		@include hexagon(300px, $hex2FrontColor, .5, withEdges);
+		@include hexagon($hexWidth, $hex2FrontColor, .5, withEdges);
 		@include transform(scale(.766));
 		@include transition(all 200ms $animationEasing);
 	}
@@ -145,7 +147,7 @@ button {
 	@include animationType(edgesRotation);
 }
 
-@keyframes rotation {
+@include keyframes(rotation) {
 	0%, 10% {
 		@include transform(none);
 	}
@@ -157,7 +159,7 @@ button {
 	}
 }
 
-@keyframes edgesRotation {
+@include keyframes(edgesRotation) {
 	0%, 10% {
 		@include transform(scale(.766));
 	}
@@ -170,21 +172,20 @@ button {
 	}
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: ($hexWidth * 2.5)) {
 	article {
 		width: 100%;
-		height: 50%;
 		display: block;
 	}
 
 	.hexagon1 {
 		hexagon {
-			@include hexagon(200px, $hex1FrontColor, .3);
+			@include hexagon(($hexWidth / 2), $hex1FrontColor, .3);
 		}
 	}
 	.hexagon2 {
 		hexagon {
-			@include hexagon(200px, $hex2FrontColor, .5, withEdges);
+			@include hexagon(($hexWidth / 2), $hex2FrontColor, .5, withEdges);
 		}
 	}
 }

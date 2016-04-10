@@ -133,7 +133,7 @@ input, select {
 /*
 ======== Mixins to use by @include ========
 */
-/* line 11, ../sass/hexagons.scss */
+/* line 13, ../sass/hexagons.scss */
 html,
 body,
 main,
@@ -141,40 +141,40 @@ article {
   height: 100%;
 }
 
-/* line 18, ../sass/hexagons.scss */
+/* line 20, ../sass/hexagons.scss */
 body {
   background-color: #FF712C;
   position: relative;
 }
 
-/* line 23, ../sass/hexagons.scss */
+/* line 25, ../sass/hexagons.scss */
 main {
   font-size: 0;
 }
 
-/* line 27, ../sass/hexagons.scss */
+/* line 29, ../sass/hexagons.scss */
 article {
   width: 50%;
   display: inline-block;
   position: relative;
   overflow: hidden;
 }
-/* line 33, ../sass/hexagons.scss */
+/* line 35, ../sass/hexagons.scss */
 article.hexagon1 {
   background-color: #FFF6C5;
 }
-/* line 37, ../sass/hexagons.scss */
+/* line 39, ../sass/hexagons.scss */
 article.hexagon2 {
   background-color: #004358;
 }
 
-/* line 42, ../sass/hexagons.scss */
+/* line 44, ../sass/hexagons.scss */
 hexagon-wrapper,
 hexagon {
   display: block;
 }
 
-/* line 51, ../sass/hexagons.scss */
+/* line 53, ../sass/hexagons.scss */
 button {
   position: absolute;
   width: 100%;
@@ -188,30 +188,30 @@ button {
   cursor: pointer;
   font-family: FontAwesome;
 }
-/* line 64, ../sass/hexagons.scss */
+/* line 66, ../sass/hexagons.scss */
 button.stopper {
   width: 0;
   opacity: 0;
 }
-/* line 70, ../sass/hexagons.scss */
+/* line 72, ../sass/hexagons.scss */
 button.trigger:before {
   content: '\f04b';
 }
-/* line 73, ../sass/hexagons.scss */
+/* line 75, ../sass/hexagons.scss */
 button.trigger:focus, button.trigger:active {
   opacity: 0;
   width: 0;
 }
-/* line 78, ../sass/hexagons.scss */
+/* line 80, ../sass/hexagons.scss */
 button.trigger:focus + .stopper, button.trigger:active + .stopper {
   width: 100%;
   opacity: 1;
 }
-/* line 82, ../sass/hexagons.scss */
+/* line 84, ../sass/hexagons.scss */
 button.trigger:focus + .stopper:before, button.trigger:active + .stopper:before {
   content: '\f04d';
 }
-/* line 89, ../sass/hexagons.scss */
+/* line 91, ../sass/hexagons.scss */
 button:before {
   display: block;
   opacity: 0;
@@ -222,13 +222,13 @@ button:before {
   font-size: 3rem;
   padding: 30px 120px;
 }
-/* line 99, ../sass/hexagons.scss */
+/* line 101, ../sass/hexagons.scss */
 button:hover:before {
   opacity: 1;
   visibility: visible;
 }
 
-/* line 131, ../sass/hexagons.scss */
+/* line 133, ../sass/hexagons.scss */
 .hexagon1 hexagon {
   position: relative;
   z-index: 1;
@@ -266,19 +266,19 @@ button:hover:before {
   width: 0;
   border-top: 86.61px solid rgba(255, 113, 44, 0.3);
 }
-/* line 123, ../sass/hexagons.scss */
+/* line 125, ../sass/hexagons.scss */
 .hexagon1 button:before {
   background-color: rgba(255, 113, 44, 0.3);
   color: #FFF6C5;
 }
-/* line 112, ../sass/hexagons.scss */
+/* line 114, ../sass/hexagons.scss */
 .hexagon1 button.trigger:focus ~ hexagon-wrapper hexagon, .hexagon1 button.trigger:active ~ hexagon-wrapper hexagon {
   -webkit-animation: rotation 5000ms cubic-bezier(0.4, -0.3, 0.4, 1.2) infinite 1s alternate;
   -moz-animation: rotation 5000ms cubic-bezier(0.4, -0.3, 0.4, 1.2) infinite 1s alternate;
   animation: rotation 5000ms cubic-bezier(0.4, -0.3, 0.4, 1.2) infinite 1s alternate;
 }
 
-/* line 139, ../sass/hexagons.scss */
+/* line 141, ../sass/hexagons.scss */
 .hexagon2 hexagon {
   position: relative;
   z-index: 1;
@@ -320,18 +320,40 @@ button:hover:before {
 .hexagon2 hexagon:after {
   bottom: -106.05px;
 }
-/* line 123, ../sass/hexagons.scss */
+/* line 125, ../sass/hexagons.scss */
 .hexagon2 button:before {
   background-color: rgba(190, 219, 57, 0.3);
   color: #004358;
 }
-/* line 112, ../sass/hexagons.scss */
+/* line 114, ../sass/hexagons.scss */
 .hexagon2 button.trigger:focus ~ hexagon-wrapper hexagon, .hexagon2 button.trigger:active ~ hexagon-wrapper hexagon {
   -webkit-animation: edgesRotation 5000ms cubic-bezier(0.4, -0.3, 0.4, 1.2) infinite 1s alternate;
   -moz-animation: edgesRotation 5000ms cubic-bezier(0.4, -0.3, 0.4, 1.2) infinite 1s alternate;
   animation: edgesRotation 5000ms cubic-bezier(0.4, -0.3, 0.4, 1.2) infinite 1s alternate;
 }
 
+@-webkit-keyframes rotation {
+  0%, 10% {
+    -webkit-transform: none;
+  }
+  45%, 55% {
+    -webkit-transform: rotate(45deg) scale(0.89);
+  }
+  90%, 100% {
+    -webkit-transform: rotate(90deg) scale(0.85);
+  }
+}
+@-moz-keyframes rotation {
+  0%, 10% {
+    -moz-transform: none;
+  }
+  45%, 55% {
+    -moz-transform: rotate(45deg) scale(0.89);
+  }
+  90%, 100% {
+    -moz-transform: rotate(90deg) scale(0.85);
+  }
+}
 @keyframes rotation {
   0%, 10% {
     -webkit-transform: none;
@@ -353,6 +375,30 @@ button:hover:before {
     -ms-transform: rotate(90deg) scale(0.85);
     -o-transform: rotate(90deg) scale(0.85);
     transform: rotate(90deg) scale(0.85);
+  }
+}
+@-webkit-keyframes edgesRotation {
+  0%, 10% {
+    -webkit-transform: scale(0.766);
+  }
+  45%, 55% {
+    -webkit-transform: rotate(-45deg) scale(1);
+    background-color: rgba(190, 219, 57, 0.1);
+  }
+  90%, 100% {
+    -webkit-transform: rotate(-90deg) scale(0.86);
+  }
+}
+@-moz-keyframes edgesRotation {
+  0%, 10% {
+    -moz-transform: scale(0.766);
+  }
+  45%, 55% {
+    -moz-transform: rotate(-45deg) scale(1);
+    background-color: rgba(190, 219, 57, 0.1);
+  }
+  90%, 100% {
+    -moz-transform: rotate(-90deg) scale(0.86);
   }
 }
 @keyframes edgesRotation {
@@ -379,22 +425,21 @@ button:hover:before {
     transform: rotate(-90deg) scale(0.86);
   }
 }
-@media screen and (max-width: 600px) {
-  /* line 174, ../sass/hexagons.scss */
+@media screen and (max-width: 750px) {
+  /* line 176, ../sass/hexagons.scss */
   article {
     width: 100%;
-    height: 50%;
     display: block;
   }
 
-  /* line 181, ../sass/hexagons.scss */
+  /* line 182, ../sass/hexagons.scss */
   .hexagon1 hexagon {
     position: relative;
     z-index: 1;
-    width: 200px;
-    height: 115.48px;
+    width: 150px;
+    height: 86.61px;
     background: rgba(255, 113, 44, 0.3);
-    margin: 57.74px 0;
+    margin: 43.305px 0;
   }
   /* line 46, ../sass/_mixins.scss */
   .hexagon1 hexagon:before, .hexagon1 hexagon:after {
@@ -406,27 +451,27 @@ button:hover:before {
   .hexagon1 hexagon:before, .hexagon1 hexagon:after {
     width: 0;
     height: 0;
-    border-left: 100px solid transparent;
-    border-right: 100px solid transparent;
+    border-left: 75px solid transparent;
+    border-right: 75px solid transparent;
   }
   /* line 64, ../sass/_mixins.scss */
   .hexagon1 hexagon:before {
     bottom: 100%;
-    border-bottom: 57.74px solid rgba(255, 113, 44, 0.3);
+    border-bottom: 43.305px solid rgba(255, 113, 44, 0.3);
   }
   /* line 69, ../sass/_mixins.scss */
   .hexagon1 hexagon:after {
     top: 100%;
     width: 0;
-    border-top: 57.74px solid rgba(255, 113, 44, 0.3);
+    border-top: 43.305px solid rgba(255, 113, 44, 0.3);
   }
 
-  /* line 186, ../sass/hexagons.scss */
+  /* line 187, ../sass/hexagons.scss */
   .hexagon2 hexagon {
     position: relative;
     z-index: 1;
-    width: 200px;
-    height: 115.48px;
+    width: 150px;
+    height: 86.61px;
     background: rgba(190, 219, 57, 0.5);
   }
   /* line 46, ../sass/_mixins.scss */
@@ -437,22 +482,22 @@ button:hover:before {
   }
   /* line 75, ../sass/_mixins.scss */
   .hexagon2 hexagon:before, .hexagon2 hexagon:after {
-    width: 141.42px;
-    height: 141.42px;
+    width: 106.065px;
+    height: 106.065px;
     -webkit-transform: scaleY(0.5774) rotate(-45deg);
     -moz-transform: scaleY(0.5774) rotate(-45deg);
     -ms-transform: scaleY(0.5774) rotate(-45deg);
     -o-transform: scaleY(0.5774) rotate(-45deg);
     transform: scaleY(0.5774) rotate(-45deg);
     background: inherit;
-    left: 29.4px;
+    left: 22.05px;
   }
   /* line 84, ../sass/_mixins.scss */
   .hexagon2 hexagon:before {
-    top: -70.7px;
+    top: -53.025px;
   }
   /* line 88, ../sass/_mixins.scss */
   .hexagon2 hexagon:after {
-    bottom: -70.7px;
+    bottom: -53.025px;
   }
 }
